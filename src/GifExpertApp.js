@@ -2,31 +2,27 @@
 // GifExperApp 
 
 import { useState } from "react";
+import { AddCategory } from "./components/AddCategory";
+import { GifGrid } from "./components/GifGrid";
 
 const GifExpertApp = () => {
-    // const categories = ['Naruto', 'One piece', 'Dragon Ball'];
 
-    const [categories, setCategoies] = useState(['Naruto', 'One piece', 'Dragon Ball'])
-
-    const handleAdd = () => {
-
-        // setCategoies([ 'Deadpool',...categories,]);
-        
-        setCategoies(cats => [...cats, 'Deadpool']);
-    }
+    const [categories, setCategoies] = useState(['Naruto'])
 
     return (
         <>
-            <h2>GifExpertApp</h2>
+            <h2 className='title animate__animated animate__animate__fadeInDown'> Gif Expert App </h2>
+            <h3 className='title'>Encuentra los mejores gif para compartir con tus amigos</h3>
+            <AddCategory setCategoies={ setCategoies }/> 
             <hr />
-
-            <button onClick={handleAdd}>Agregar</button>
 
             <ol>
                 {
-                    categories.map(category => {
-                        return <li key={category}>{category}</li>
-                    })
+                categories.map(category => 
+                    <GifGrid 
+                        key={category}
+                        category={category} 
+                    />)
                 }
             </ol>
         </>
